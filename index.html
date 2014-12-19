@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0;">
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/style.css">
+	<title>Star Wars: Starships</title>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+	<script src="js/jquery-1.11.1.min.js"></script>
+	<script src="js/script.js"></script>
+</head>
+<body ng-app="" ng-controller="starshipController">
+	<div class="mobile">
+		<p>Sorry Jedi, you can only access this site on your computer.</p>
+		<button onclick='document.querySelector(".mobile").style.display = "none";'>GO ANYWAY.</button>
+	</div>
+	<div class="back">
+
+			<!-- Part 1 -->
+
+			<img class="logo" src="img/logo.png" alt="">
+			<div class="text">
+				<h1 id="first_text">Star Wars Starship</h1><br/>
+				<h2 id="second_text">present</h2>
+			</div>
+
+			<!-- Part 2 -->
+
+			<div class="red_bar_1"></div>
+			<div class="red_bar_2"></div>
+			<div class="text_2">
+				<h1>Discover the most accurate starships database</h1>
+				<h1>of the Star Wars saga</h1>
+			</div>
+			<div class="button"></div>
+			<h3 class="start">START</h3>
+
+	</div>
+	<div id="block">
+			<div id="left">
+				<ul class="filter">
+					<a><li class="choice" name="alliance" onclick="filterChoice('alliance');">Alliance</li></a> 
+					<a><li class="choice" name="constructor" onclick="filterChoice('constructor');">Constructor</li></a> 
+					<a><li class="choice" name="class" onclick="filterChoice('class');">Class</li></a>
+				</ul>
+			</div><!-- 
+			 --><div id="right">
+
+			 		<button class="close" onclick="javascript:cacher('block');"><img class="rotate"  alt='cross' src="img/cross.png"></button>
+
+					
+			 		<ul class="filter_alliance">
+			 			<li class="puce chosenCat" ng-click="myAlliance = undefined; filterSpaceship(myAlliance,myConstructor,myClass,myMovie);" onclick="filterChoiceCat('filter_alliance',1);">All</li>
+						<li class="puce" ng-click="myAlliance = 'Galactic Empire'; filterSpaceship(myAlliance,myConstructor,myClass,myMovie); " onclick="filterChoiceCat('filter_alliance',2);">Galactic Empire</li> 
+						<li class="puce" ng-click="myAlliance = 'Galactic Republic'; filterSpaceship(myAlliance,myConstructor,myClass,myMovie); " onclick="filterChoiceCat('filter_alliance',3);">Galactic Republic</li> 
+						<li class="puce" ng-click="myAlliance = 'Naboo Royal Guards'; filterSpaceship(myAlliance,myConstructor,myClass,myMovie); " onclick="filterChoiceCat('filter_alliance',4);">Naboo Royal Guards</li>
+						<li class="puce" ng-click="myAlliance = 'Rebel Alliance'; filterSpaceship(myAlliance,myConstructor,myClass,myMovie); " onclick="filterChoiceCat('filter_alliance',5);">Rebel Alliance</li> 
+						<li class="puce" ng-click="myAlliance = 'Rebel Pilot'; filterSpaceship(myAlliance,myConstructor,myClass,myMovie);" onclick="filterChoiceCat('filter_alliance',6);">Rebel Pilot</li> 
+						<li class="puce" ng-click="myAlliance = 'Trade Federation'; filterSpaceship(myAlliance,myConstructor,myClass,myMovie);" onclick="filterChoiceCat('filter_alliance',7);">Trade Federation</li>
+						<li class="puce" ng-click="myAlliance = 'Confederacy of Independant Systems'; filterSpaceship(myAlliance,myConstructor,myClass,myMovie);" onclick="filterChoiceCat('filter_alliance',8);">Confederacy of Independant Systems</li>
+					</ul>
+					
+
+					
+			 		<ul class="filter_constructor">
+			 			<li class="puce chosenCat" ng-click="myConstructor = undefined; filterSpaceship(myAlliance,myConstructor,myClass,myMovie);" onclick="filterChoiceCat('filter_constructor',1);">All</li>
+						<li class="puce" ng-click="myConstructor = 'Incom Corporation'; filterSpaceship(myAlliance,myConstructor,myClass,myMovie);" onclick="filterChoiceCat('filter_constructor',2);">Incom Corporation</li> 
+						<li class="puce" ng-click="myConstructor = 'Corellian Technology Corporation'; filterSpaceship(myAlliance,myConstructor,myClass,myMovie);" onclick="filterChoiceCat('filter_constructor',3);">Corellian Technology Corporation</li> 
+						<li class="puce" ng-click="myConstructor = 'Kuat Shipyards'; filterSpaceship(myAlliance,myConstructor,myClass,myMovie);" onclick="filterChoiceCat('filter_constructor',4);">Kuat Shipyards</li>
+						<li class="puce" ng-click="myConstructor = 'Sienar Fleet Systems'; filterSpaceship(myAlliance,myConstructor,myClass,myMovie);" onclick="filterChoiceCat('filter_constructor',5);">Sienar Fleet Systems</li>
+						<li class="puce" ng-click="myConstructor = 'Heavy Engineering Rothana'; filterSpaceship(myAlliance,myConstructor,myClass,myMovie);" onclick="filterChoiceCat('filter_constructor',6);">Heavy Engineering Rothana</li>
+						<li class="puce" ng-click="myConstructor = 'Engineers Starfleet Theed Palace'; filterSpaceship(myAlliance,myConstructor,myClass,myMovie);" onclick="filterChoiceCat('filter_constructor',7);">Engineers Starfleet Theed Palace</li>
+						<li class="puce" ng-click="myConstructor = 'Kuat Systems Engineering'; filterSpaceship(myAlliance,myConstructor,myClass,myMovie);" onclick="filterChoiceCat('filter_constructor',8);">Kuat Systems Engineering</li>
+						<li class="puce" ng-click="myConstructor = 'Subpro Corporation'; filterSpaceship(myAlliance,myConstructor,myClass,myMovie);" onclick="filterChoiceCat('filter_constructor',9);">Subpro Corporation</li>
+						<li class="puce" ng-click="myConstructor = 'Koensayr Manufacturing'; filterSpaceship(myAlliance,myConstructor,myClass,myMovie);" onclick="filterChoiceCat('filter_constructor',10);">Koensayr Manufacturing</li>
+						<li class="puce" ng-click="myConstructor = 'Haor Chall Engineering'; filterSpaceship(myAlliance,myConstructor,myClass,myMovie);" onclick="filterChoiceCat('filter_constructor',11);">Haor Chall Engineering</li>
+					</ul>	
+					
+
+					
+					<ul class="filter_class">
+						<li class="puce chosenCat " ng-click="myClass = undefined; filterSpaceship(myAlliance,myConstructor,myClass,myMovie);" onclick="filterChoiceCat('filter_class',1);">All</li>
+						<li class="puce" ng-click="myClass = 'Starfighter'" onclick="filterChoiceCat('filter_class',2);">Starfighter</li> 
+						<li class="puce" ng-click="myClass = 'Light freighter'; filterSpaceship(myAlliance,myConstructor,myClass,myMovie);" onclick="filterChoiceCat('filter_class','filter_class');">Light freighter</li> 
+						<li class="puce" ng-click="myClass = 'Star Destroyer'; filterSpaceship(myAlliance,myConstructor,myClass,myMovie);" onclick="filterChoiceCat('filter_class',4);">Star Destroyer</li>
+						<li class="puce" ng-click="myClass = 'Gunship'; filterSpaceship(myAlliance,myConstructor,myClass,myMovie);" onclick="filterChoiceCat('filter_class',5);">Gunship</li>
+						<li class="puce" ng-click="myClass = 'Luxury Starfighter'; filterSpaceship(myAlliance,myConstructor,myClass,myMovie);" onclick="filterChoiceCat('filter_class',6);">Luxury Starfighter</li>
+						<li class="puce" ng-click="myClass = 'Armed Governement Transport Shuttle'; filterSpaceship(myAlliance,myConstructor,myClass,myMovie);" onclick="filterChoiceCat('filter_class',7);">Armed Governement Transport Shuttle</li>
+						<li class="puce" ng-click="myClass = 'Assault Starfighter'; filterSpaceship(myAlliance,myConstructor,myClass,myMovie);" onclick="filterChoiceCat('filter_class',8);">Assault Starfighter</li>
+						<li class="puce" ng-click="myClass = 'Space Transport'; filterSpaceship(myAlliance,myConstructor,myClass,myMovie);" onclick="filterChoiceCat('filter_class',9);">Space Transport</li>
+						<li class="puce" ng-click="myClass = 'Airspeeder/Repulsocraft'; filterSpaceship(myAlliance,myConstructor,myClass,myMovie);" onclick="filterChoiceCat('filter_class',10);">Airspeeder/Repulsocraft</li>
+						<li class="puce" ng-click="myClass = 'Landing Craft'; filterSpaceship(myAlliance,myConstructor,myClass,myMovie);" onclick="filterChoiceCat('filter_class',11);">Landing Craft</li>
+						<li class="puce" ng-click="myClass = 'Battleship'; filterSpaceship(myAlliance,myConstructor,myClass,myMovie);" onclick="filterChoiceCat('filter_class',12);">Battleship</li>
+						<li class="puce" ng-click="myClass = 'Droid Starfighter'; filterSpaceship(myAlliance,myConstructor,myClass,myMovie);" onclick="filterChoiceCat('filter_class',13);">Droid Starfighter</li>
+					</ul>
+					
+						
+				</div>
+	</div>
+	<div id="theDetails">
+		<div class="left_block">
+	        <div class="hologram">
+		        <div class="container_hologram">
+		           <div class="spaceship" ng-style="{'background-image':'url(img/img_holo/'+chosenSpaceships[numb].img+'.png)'}" ></div>
+		           <div class="socle"></div> 
+		        </div>
+	        </div>
+			<div class="carateristic">
+				<div class="container_blocks">
+
+					<div class="block_1">
+					<img src="img/cible.svg" alt='target'>
+					<h2>Armement</h2>
+					<p>{{chosenSpaceships[numb].armament}}</p>
+					</div>
+		
+					<div class="block_2">
+					<img src="img/plane.svg" alt='size'>
+					<h2>Size</h2>
+					<p>{{chosenSpaceships[numb].size}}</p>
+					</div>
+					
+					<div class="block_3">
+					<img src="img/speed.svg" alt='speed'>
+					<h2>Speed</h2>
+					<p>{{chosenSpaceships[numb].maxspeed}}</p>
+					</div>
+					
+					<div class="block_4">
+					<img src="img/crew.png" alt='crew'>
+					<h2>Crew</h2>
+					<p>{{chosenSpaceships[numb].crew}}</p>
+					</div>
+				</div>
+				<div class="titre">	
+				</div>
+			</div>
+		</div>
+	    <div class="right_block"> 
+			<div class="menu">
+			     <ul>
+			         <a href="#"><li onclick="filterChoice('alliance'); cacher('block');">Alliance</li></a><!-- 
+			      --><a href="#"><li onclick="filterChoice('constructor'); cacher('block');">Constructor</li></a><!-- 
+			      --><a href="#"><li onclick="filterChoice('class'); cacher('block');">Class</li></a><!-- 
+			      --><a href="#"><li id="close" onclick="cacher('theDetails');">Close<img id="cross" alt='cross' src="img/cross.svg" ></li></a>
+			     </ul>
+			</div>
+	        <div class="description">
+	        <div class="texte">
+	        <h1>{{chosenSpaceships[numb].name}}</h1>
+	        <p>{{chosenSpaceships[numb].longDescr}}</p>
+	        </div>
+			</div>
+		</div>
+	</div>
+	<div id="container">
+		<div class="menu">
+				<div class="logo">
+					<img src="img/logo.png" alt='logo'>
+				</div>
+				<ul class="sort">
+					<a><li onclick="filterChoice('alliance'); cacher('block');"><span>Alliance</span></li></a><!-- 
+					 --><a><li onclick="filterChoice('constructor'); cacher('block');"><span>Constructor</span></li></a><!-- 
+					 --><a><li onclick="filterChoice('class'); cacher('block');"><span>Class</span></li></a>
+				</ul>
+				<form method="post" action="error.html">
+				<input type="text" class="search">
+				<input type="submit" class="search2" value="" onclick="alert(hello);">
+				</form>
+		</div>
+		<div class="arrow_left" ng-click="updateSpaceship(-1)">
+		</div>
+		<div class="arrow_right" ng-click="updateSpaceship(1)">	
+		</div>
+		<div class="legend_circle" ng-hide="chosenSpaceships.length == 0">
+			<div class="legend_line"></div>
+			<div class="legend_content">
+				<p>Type: <span>{{chosenSpaceships[numb].type}}</span></p>
+				<p>Side: <span>{{chosenSpaceships[numb].side}}</span></p>
+				<p>Manufacturer: <span>{{chosenSpaceships[numb].manufacturer}}</span></p>
+				<button onclick="cacher('theDetails');">MORE INFOS</button>
+			</div>
+		</div>
+		<div class="footer">
+					<button ng-click="myMovie = undefined; filterSpaceship(myAlliance,myConstructor,myClass,myMovie);"  onclick="filterChoiceFilm(0)">All films</button>
+					<ul>
+						<li>
+							<div class="title"><span>Episode</span><br/><span>I</span></div>
+							<div class="filledCircle notChosenFilm" name="1"></div>
+							<div onclick="filterChoiceFilm(1)" ng-click="myMovie = 'Episode I The Phantom Menace'; filterSpaceship(myAlliance,myConstructor,myClass,myMovie);" class="around"></div>
+						</li><!-- 
+						 --><li>
+						 	<div class="title"><span>Episode</span><br/><span>II</span></div>
+							<div class="filledCircle notChosenFilm" name="2"></div>
+							<div onclick="filterChoiceFilm(2)" ng-click="myMovie = 'Episode II Attack of the Clones'; filterSpaceship(myAlliance,myConstructor,myClass,myMovie);" class="around"></div>
+						</li><!-- 
+						 --><li>
+						 	<div class="title"><span>Episode</span><br/><span>III</span></div>
+							<div class="filledCircle notChosenFilm" name="3"></div>
+							<div onclick="filterChoiceFilm(3)" ng-click="myMovie = 'Episode III Revenge of the Sith'; filterSpaceship(myAlliance,myConstructor,myClass,myMovie);" class="around"></div>
+						</li><!-- 
+						 --><li>
+							<div class="title"><span>Episode</span><br/><span>IV</span></div>
+							<div class="filledCircle notChosenFilm" name="4"></div>
+							<div onclick="filterChoiceFilm(4)" ng-click="myMovie = 'Episode IV A New Hope'; filterSpaceship(myAlliance,myConstructor,myClass,myMovie);" class="around"></div>
+						</li><!-- 
+						 --><li>
+						 	<div class="title"><span>Episode</span><br/><span>V</span></div>
+							<div class="filledCircle notChosenFilm" name="5"></div>
+							<div onclick="filterChoiceFilm(5)" ng-click="myMovie = 'Episode V The Empire Strikes Back'; filterSpaceship(myAlliance,myConstructor,myClass,myMovie);" class="around"></div>
+						</li><!-- 
+						 --><li>
+							<div class="title"><span>Episode</span><br/><span>VI</span></div>
+							<div class="filledCircle notChosenFilm" name="6"></div>
+							<div onclick="filterChoiceFilm(6)" ng-click="alert('hello'); myMovie = 'Star Wars: Episode VI Return of the Jedi'; filterSpaceship(myAlliance,myConstructor,myClass,myMovie);" class="around"></div>
+						</li>
+					</ul>
+					<p id="name">{{chosenSpaceships[numb].name.length > 0 ? chosenSpaceships[numb].name : 'No starship matching these filters'}}</p>
+					<div class="social">
+						<a href='http://www.facebook.com/share.php?u=http://louisamiot.com/lab/starwars' target="_blank"><img alt='Facebook' src='img/facebook.png'/></a>
+						<a href="https://twitter.com/share?url=http://louisamiot.com/lab/starwars&text=Check%20out%20this%20amazing%20database%20about%20the%20Star%20Wars%20starships%20:&hashtags=StarWarsRetrospective,Starships" target="_blank"><img src="img/twitter.png"></a>
+					</div>
+		</div>
+	</div>
+	<div id="contain" ng-show="chosenSpaceships[numb].name == 'X-Wing'">
+	</div>
+	<div id="contain2" ng-hide="chosenSpaceships[numb].name == 'X-Wing'">
+		<img ng-src="img/visuals/{{chosenSpaceships[numb].visual}}.png" ng-hide="chosenSpaceships.length == 0" />	
+	</div>
+    <script src="js/three.min.js"></script>
+    <script src="js/TrackballControls.js"></script>
+    <script src="js/starship1/X6WING_0.js"></script>
+    <script src="js/starship1/X6WING_1.js"></script>
+    <script src="js/starship1/X6WING_2.js"></script>
+    <script src="js/starship1/X6WING_3.js"></script>
+    <script src="js/starship1/X6WING_4.js"></script>
+    <script src="js/starship1/X6WING_5.js"></script>
+    <script src="js/starship1/X6WING_6.js"></script>
+    <script src="js/starship1/X6WING_7.js"></script>
+    <script src="js/starship1/X6WING_8.js"></script>
+    <script src="js/starship1/X6WING_9.js"></script>
+    <script src="js/starship1/X6WING_10.js"></script>
+    <script src="js/starship1/X6WING_11.js"></script>
+    <script src="js/starship1/X6WING_12.js"></script>
+    <script src="js/starship1/X6WING_13.js"></script>
+    <script src="js/starship1/X6WING_14.js"></script>
+    <script src="js/starship1/X6WING_15.js"></script>
+    <script src="js/starship1/X6WING_16.js"></script>
+    <script src="js/starship1/X6WING_17.js"></script>
+    <script src="js/starship1/X6WING_18.js"></script>
+    <script src="js/starship1/X6WING_19.js"></script>
+    <script src="js/starship1/X6WING_20.js"></script>
+    <script src="js/starship1/X6WING_21.js"></script>
+    <script src="js/starship1/X6WING_22.js"></script>
+    <script src="js/starship1/X6WING_23.js"></script>
+    <script src="js/starship1/X6WING_24.js"></script>
+    <script src="js/starship1/X6WING_25.js"></script>
+	<script src="js/starship1/X6WING_26.js"></script>
+	<script src="js/starship1/X6WING_27.js"></script>
+	<script src="js/starship1/X6WING_28.js"></script>
+	<script src="js/threed.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/script.js"></script>
+	<script src="js/data.json"></script>
+</body>
+</html>
